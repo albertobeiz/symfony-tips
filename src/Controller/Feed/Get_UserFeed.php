@@ -1,15 +1,15 @@
 <?php
 
 
-namespace App\Controller;
+namespace App\Controller\Feed;
 
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class Post_SignUpUser
+class Get_UserFeed
 {
-    #[Route('/users', name: 'create_user', methods: ['POST'])]
+    #[Route('/{username}', name: 'user_feed', methods: ['GET'])]
     public function __invoke(): JsonResponse
     {
         return new JsonResponse([]);
