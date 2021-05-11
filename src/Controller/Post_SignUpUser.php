@@ -7,13 +7,11 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class Post_RegisterUser
+class Post_SignUpUser
 {
     #[Route('/users', name: 'create_user', methods: ['POST'])]
-    public function create(): JsonResponse
+    public function __invoke(): JsonResponse
     {
-        return new JsonResponse([
-            1, 2, 3, 4, 5
-        ]);
+        return new JsonResponse([]);
     }
 }
