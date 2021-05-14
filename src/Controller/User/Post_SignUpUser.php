@@ -5,6 +5,7 @@ namespace App\Controller\User;
 
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use App\Services\AnalyticsService;
 use App\Services\EmailService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,19 +17,22 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class Post_SignUpUser
 {
+    public function __construct(
+        private UserRepository $userRepository,
+        private EntityManagerInterface $entityManager,
+        private SerializerInterface $serializer,
+        private EmailService $emailService,
+        private AnalyticsService $analyticsService,
+    )
+    {
+    }
+
     #[Route('/users', name: 'create_user', methods: ['POST'])]
-    public function __invoke(
-        Request $request,
-        EntityManagerInterface $entityManager,
-        SerializerInterface $serializer,
-        EmailService $emailService,
-        AnalyticsService $analyticsService,
-    ): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
         $body = json_decode($request->getContent(), true);
 
-        $repository = $entityManager->getRepository(User::class);
-        if($repository->findOneBy(['email' => $body['email']])) {
+        if($this->userRepository->findOneBy(['email' => $body['email']])) {
             return new JsonResponse('[Error] Email Already Exists', Response::HTTP_CONFLICT);
         }
 
@@ -40,14 +44,14 @@ class Post_SignUpUser
         $user->setUsername($body['username']);
         $user->setEmail($body['email']);
 
-        $entityManager->persist($user);
-        $entityManager->flush();
+        $this->userRepository->persist($user);
+        $this->entityManager->flush();
 
-        $emailService->send($user->getEmail(), 'Bienvenido a Twitfony');
-        $userCount = $analyticsService->getUsersCount();
-        $analyticsService->setUsersCount($userCount + 1);
+        $this->emailService->send($user->getEmail(), 'Bienvenido a Twitfony');
+        $userCount = $this->analyticsService->getUsersCount();
+        $this->analyticsService->setUsersCount($userCount + 1);
 
-        $response = $serializer->serialize($user, 'json');
+        $response = $this->serializer->serialize($user, 'json');
         return new JsonResponse($response);
     }
 }
