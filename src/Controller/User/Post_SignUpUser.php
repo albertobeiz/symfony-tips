@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Services\AnalyticsService;
 use App\Services\EmailService;
+use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,14 +24,14 @@ class Post_SignUpUser
     }
 
     #[Route('/users', name: 'create_user', methods: ['POST'])]
-    public function __invoke(Request $request): User | Response
+    public function __invoke(Request $request): User
     {
         if($this->userRepository->findOneBy(['email' => $request->get('email')])) {
-            return new Response('[Error] Email Already Exists', Response::HTTP_CONFLICT);
+            throw new InvalidArgumentException('[Error] Email Already Exists');
         }
 
         if(strlen($request->get('username')) < 2) {
-            return new Response('[Error] Username is too short', Response::HTTP_BAD_REQUEST);
+            throw new InvalidArgumentException('[Error] Username is too short');
         }
 
         $user = new User();
