@@ -30,19 +30,17 @@ class Post_SignUpUser
     #[Route('/users', name: 'create_user', methods: ['POST'])]
     public function __invoke(Request $request): JsonResponse
     {
-        $body = json_decode($request->getContent(), true);
-
-        if($this->userRepository->findOneBy(['email' => $body['email']])) {
+        if($this->userRepository->findOneBy(['email' => $request->get('email')])) {
             return new JsonResponse('[Error] Email Already Exists', Response::HTTP_CONFLICT);
         }
 
-        if(strlen($body['username']) < 2) {
+        if(strlen($request->get('username')) < 2) {
             return new JsonResponse('[Error] Username is too short', Response::HTTP_BAD_REQUEST);
         }
 
         $user = new User();
-        $user->setUsername($body['username']);
-        $user->setEmail($body['email']);
+        $user->setUsername($request->get('username'));
+        $user->setEmail($request->get('email'));
 
         $this->userRepository->persist($user);
         $this->entityManager->flush();
