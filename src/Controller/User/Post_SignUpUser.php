@@ -51,6 +51,7 @@ class Post_SignUpUser
         return new Response(
             $response,
             Response::HTTP_OK,
-            ['Content-Type' => 'application/json']);
+            ['Content-Type' => 'application/json']
+        );
     }
 }
