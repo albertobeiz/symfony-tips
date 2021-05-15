@@ -20,7 +20,6 @@ class Post_SignUpUser
     public function __construct(
         private UserRepository $userRepository,
         private EntityManagerInterface $entityManager,
-        private SerializerInterface $serializer,
         private EmailService $emailService,
         private AnalyticsService $analyticsService,
     )
@@ -28,7 +27,7 @@ class Post_SignUpUser
     }
 
     #[Route('/users', name: 'create_user', methods: ['POST'])]
-    public function __invoke(Request $request): JsonResponse
+    public function __invoke(Request $request): User | JsonResponse
     {
         if($this->userRepository->findOneBy(['email' => $request->get('email')])) {
             return new JsonResponse('[Error] Email Already Exists', Response::HTTP_CONFLICT);
@@ -48,7 +47,6 @@ class Post_SignUpUser
         $this->emailService->onUserCreated($user);
         $this->analyticsService->onUserCreated();
 
-        $response = $this->serializer->serialize($user, 'json');
-        return new JsonResponse($response);
+        return $user;
     }
 }
