@@ -8,7 +8,6 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use App\Services\AnalyticsService;
 use App\Services\EmailService;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +16,6 @@ class Post_SignUpUser
 {
     public function __construct(
         private UserRepository $userRepository,
-        private EntityManagerInterface $entityManager,
         private EmailService $emailService,
         private AnalyticsService $analyticsService,
     )
@@ -40,7 +38,6 @@ class Post_SignUpUser
         $user->setEmail($request->get('email'));
 
         $this->userRepository->persist($user);
-        $this->entityManager->flush();
 
         $this->emailService->onUserCreated($user);
         $this->analyticsService->onUserCreated();
