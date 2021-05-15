@@ -23,17 +23,17 @@ class Post_SignUpUser
         SerializerInterface $serializer,
         EmailService $emailService,
         AnalyticsService $analyticsService,
-    ): JsonResponse
+    ): Response
     {
         $body = json_decode($request->getContent(), true);
 
         $repository = $entityManager->getRepository(User::class);
         if($repository->findOneBy(['email' => $body['email']])) {
-            return new JsonResponse('[Error] Email Already Exists', Response::HTTP_CONFLICT);
+            return new Response('[Error] Email Already Exists', Response::HTTP_CONFLICT);
         }
 
         if(strlen($body['username']) < 2) {
-            return new JsonResponse('[Error] Username is too short', Response::HTTP_BAD_REQUEST);
+            return new Response('[Error] Username is too short', Response::HTTP_BAD_REQUEST);
         }
 
         $user = new User();
@@ -48,6 +48,10 @@ class Post_SignUpUser
         $analyticsService->setUsersCount($userCount + 1);
 
         $response = $serializer->serialize($user, 'json');
-        return new JsonResponse($response);
+        return new Response(
+            $response,
+            Response::HTTP_OK,
+            ['Content-Type' => 'application/json']
+        );
     }
 }
