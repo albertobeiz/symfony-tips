@@ -47,9 +47,8 @@ class Post_SignUpUser
         $this->userRepository->persist($user);
         $this->entityManager->flush();
 
-        $this->emailService->send($user->getEmail(), 'Bienvenido a Twitfony');
-        $userCount = $this->analyticsService->getUsersCount();
-        $this->analyticsService->setUsersCount($userCount + 1);
+        $this->emailService->onUserCreated($user);
+        $this->analyticsService->onUserCreated();
 
         $response = $this->serializer->serialize($user, 'json');
         return new JsonResponse($response);
