@@ -10,7 +10,6 @@ use App\Services\AnalyticsService;
 use App\Services\EmailService;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class Post_SignUpUser
