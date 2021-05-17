@@ -62,9 +62,11 @@ class Post_SignUpUser_Test extends TestCase
             ->method('persist')
             ->with($this->equalTo($expectedUser));
 
-        $this->useCase->__invoke(new Request([
+        $returnedUser = $this->useCase->__invoke(new Request([
             'username' => 'username',
             'email' => 'username@tips.com'
         ]));
+
+        $this->assertEquals($expectedUser, $returnedUser);
     }
 }
