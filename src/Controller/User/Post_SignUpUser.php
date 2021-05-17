@@ -11,6 +11,7 @@ use App\Services\EmailService;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Uid\Uuid;
 
 class Post_SignUpUser
 {
@@ -34,6 +35,7 @@ class Post_SignUpUser
         }
 
         $user = new User();
+        $user->setUuid(Uuid::fromString($request->get('uuid', Uuid::v4())));
         $user->setUsername($request->get('username'));
         $user->setEmail($request->get('email'));
 

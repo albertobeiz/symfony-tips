@@ -12,6 +12,7 @@ use App\Services\EmailService;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Uid\Uuid;
 
 class Post_SignUpUser_Test extends TestCase
 {
@@ -56,13 +57,17 @@ class Post_SignUpUser_Test extends TestCase
         $this->emailService->expects($this->once())->method('onUserCreated');
         $this->analyticsService->expects($this->once())->method('onUserCreated');
 
-        $expectedUser = (new User())->setUsername('username')->setEmail('username@tips.com');
+        $expectedUser = (new User())
+            ->setUuid(Uuid::fromString('d9e7a184-5d5b-11ea-a62a-3499710062d0'))
+            ->setUsername('username')
+            ->setEmail('username@tips.com');
 
         $this->userRepository->expects($this->once())
             ->method('persist')
             ->with($this->equalTo($expectedUser));
 
         $returnedUser = $this->useCase->__invoke(new Request([
+            'uuid' => 'd9e7a184-5d5b-11ea-a62a-3499710062d0',
             'username' => 'username',
             'email' => 'username@tips.com'
         ]));

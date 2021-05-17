@@ -370,6 +370,9 @@
     "symfony/polyfill-php80": {
         "version": "v1.22.1"
     },
+    "symfony/polyfill-uuid": {
+        "version": "v1.22.1"
+    },
     "symfony/proxy-manager-bridge": {
         "version": "v5.2.4"
     },
@@ -398,6 +401,9 @@
     },
     "symfony/test-pack": {
         "version": "v1.0.7"
+    },
+    "symfony/uid": {
+        "version": "v5.2.6"
     },
     "symfony/var-dumper": {
         "version": "v5.2.7"
