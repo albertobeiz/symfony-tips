@@ -25,11 +25,11 @@ class Post_SignUpUser
     #[Route('/users', name: 'create_user', methods: ['POST'])]
     public function __invoke(Request $request): User
     {
-        if($this->userRepository->findOneBy(['email' => $request->get('email')])) {
+        if ($this->userRepository->findOneBy(['email' => $request->get('email')])) {
             throw new InvalidArgumentException('[Error] Email Already Exists');
         }
 
-        if(strlen($request->get('username')) < 2) {
+        if (strlen($request->get('username')) < 2) {
             throw new InvalidArgumentException('[Error] Username is too short');
         }
 
