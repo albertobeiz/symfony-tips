@@ -41,15 +41,21 @@ class Post_SignUpUser_Test extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->userRepository->method('findOneBy')->willReturn(new User(Uuid::v4(), 'username', 'username@tips.com'));
+        $this->userRepository->method('findOneBy')->willReturn(
+            new User(
+                Uuid::v4(),
+                'username',
+                'username@tips.com'
+            )
+        );
         $this->useCase->__invoke(new Request());
     }
 
-    public function testGivenShortEmailThenThrowException()
+    public function testGivenShortUsernameThenThrowException()
     {
         $this->expectException(InvalidArgumentException::class);
 
-        $this->useCase->__invoke(new Request(['username' => 'a']));
+        $this->useCase->__invoke(new Request(['username' => 'a', 'email' => 'a@a.a']));
     }
 
     public function testGivenCorrectDataThenSaveUser()

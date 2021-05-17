@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use InvalidArgumentException;
 use Symfony\Component\Uid\Uuid;
 
 /**
@@ -58,6 +59,10 @@ class User
 
     public function setUsername(string $username): self
     {
+        if (strlen($username) < 2) {
+            throw new InvalidArgumentException('[Error] Username is too short');
+        }
+
         $this->username = $username;
 
         return $this;

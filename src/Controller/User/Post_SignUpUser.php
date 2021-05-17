@@ -30,10 +30,6 @@ class Post_SignUpUser
             throw new InvalidArgumentException('[Error] Email Already Exists');
         }
 
-        if (strlen($request->get('username')) < 2) {
-            throw new InvalidArgumentException('[Error] Username is too short');
-        }
-
         $user = new User(
             Uuid::fromString($request->get('uuid', Uuid::v4())),
             $request->get('username'),
