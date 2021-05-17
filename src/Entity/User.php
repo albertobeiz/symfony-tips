@@ -28,6 +28,17 @@ class User
      */
     private ?string $email;
 
+    public function __construct(
+        Uuid $uuid,
+        string $username,
+        string $email
+    )
+    {
+        $this->setUuid($uuid);
+        $this->setUsername($username);
+        $this->setEmail($email);
+    }
+
     public function getUuid(): ?Uuid
     {
         return $this->uuid;

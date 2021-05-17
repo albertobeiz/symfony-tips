@@ -34,11 +34,11 @@ class Post_SignUpUser
             throw new InvalidArgumentException('[Error] Username is too short');
         }
 
-        $user = new User();
-        $user->setUuid(Uuid::fromString($request->get('uuid', Uuid::v4())));
-        $user->setUsername($request->get('username'));
-        $user->setEmail($request->get('email'));
-
+        $user = new User(
+            Uuid::fromString($request->get('uuid', Uuid::v4())),
+            $request->get('username'),
+            $request->get('email')
+        );
         $this->userRepository->persist($user);
 
         $this->emailService->onUserCreated($user);
