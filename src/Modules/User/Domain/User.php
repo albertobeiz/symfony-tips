@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Modules\User\Domain;
 
-use App\Repository\UserRepository;
+use App\Modules\User\Infrastructure\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use InvalidArgumentException;
 use Symfony\Component\Uid\Uuid;

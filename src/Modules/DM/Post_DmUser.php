@@ -1,15 +1,15 @@
 <?php
 
 
-namespace App\Controller\User;
+namespace App\Modules\DM;
 
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class Get_UsersList
+class Post_DmUser
 {
-    #[Route('/users', name: 'users_list', methods: ['GET'])]
+    #[Route('/dm', name: 'user_dms', methods: ['GET'])]
     public function __invoke(): JsonResponse
     {
         return new JsonResponse([]);

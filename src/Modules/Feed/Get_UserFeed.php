@@ -1,15 +1,15 @@
 <?php
 
 
-namespace App\Controller\Follow;
+namespace App\Modules\Feed;
 
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class Post_FollowUser
+class Get_UserFeed
 {
-    #[Route('/follow', name: 'follow_user', methods: ['POST'])]
+    #[Route('/{username}', name: 'user_feed', methods: ['GET'])]
     public function __invoke(): JsonResponse
     {
         return new JsonResponse([]);

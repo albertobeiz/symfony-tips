@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Controller\User;
+namespace App\Modules\User\Application;
 
 
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\Modules\User\Domain\User;
+use App\Modules\User\Infrastructure\UserRepository;
 use App\Services\AnalyticsService;
 use App\Services\EmailService;
 use InvalidArgumentException;

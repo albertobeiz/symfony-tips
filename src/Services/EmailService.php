@@ -4,7 +4,7 @@
 namespace App\Services;
 
 
-use App\Entity\User;
+use App\Modules\User\Domain\User;
 
 class EmailService
 {

@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Tests\Controller\User;
+namespace App\Tests\Modules\User;
 
 
-use App\Controller\User\Post_SignUpUser;
-use App\Entity\User;
-use App\Repository\UserRepository;
+use App\Modules\User\Application\Post_SignUpUser;
+use App\Modules\User\Domain\User;
+use App\Modules\User\Infrastructure\UserRepository;
 use App\Services\AnalyticsService;
 use App\Services\EmailService;
 use InvalidArgumentException;
