@@ -4,19 +4,24 @@
 namespace App\Tests\Modules\User;
 
 
+use App\Modules\Shared\EventBus;
 use App\Modules\User\Application\Post_SignUpUser;
 use App\Modules\User\Domain\User;
+use App\Modules\User\Domain\UserCreated;
 use App\Modules\User\Infrastructure\UserRepository;
 use App\Services\AnalyticsService;
 use App\Services\EmailService;
+use App\Tests\Modules\Shared\InMemoryMessageBus;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Uid\Uuid;
 
 class Post_SignUpUser_Test extends TestCase
 {
     private Post_SignUpUser $useCase;
+    private MessageBusInterface $messageBus;
     private UserRepository $userRepository;
     private EmailService $emailService;
     private AnalyticsService $analyticsService;
@@ -26,6 +31,9 @@ class Post_SignUpUser_Test extends TestCase
      */
     public function setup(): void
     {
+        $this->messageBus = new InMemoryMessageBus();
+        EventBus::setEventBus($this->messageBus);
+
         $this->userRepository = $this->createMock(UserRepository::class);
         $this->emailService = $this->createMock(EmailService::class);
         $this->analyticsService = $this->createMock(AnalyticsService::class);
@@ -80,5 +88,9 @@ class Post_SignUpUser_Test extends TestCase
         ]));
 
         $this->assertEquals($expectedUser, $returnedUser);
+
+        $this->assertEquals(
+            new UserCreated(Uuid::fromString('d9e7a184-5d5b-11ea-a62a-3499710062d0'), 'username', 'username@tips.com'),
+            $this->messageBus->getDispatched()[0]);
     }
 }

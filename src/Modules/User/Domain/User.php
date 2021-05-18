@@ -2,6 +2,7 @@
 
 namespace App\Modules\User\Domain;
 
+use App\Modules\Shared\EventBus;
 use App\Modules\User\Infrastructure\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use InvalidArgumentException;
@@ -38,6 +39,8 @@ class User
         $this->setUuid($uuid);
         $this->setUsername($username);
         $this->setEmail($email);
+
+        EventBus::dispatch(new UserCreated($uuid, $username, $email));
     }
 
     public function getUuid(): ?Uuid
