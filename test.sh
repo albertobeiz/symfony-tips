@@ -18,5 +18,11 @@ curl -d '{"email":"b@b.b", "username":"b"}' -H "Content-Type: application/json" 
 symfony server:stop -q
 
 printf "\n\n\n[Test.sh] Waiting before processing Async events...\n\n"
-sleep 5
+sleep 1
 php bin/console messenger:consume async -q --time-limit=1
+
+symfony server:start -d -q
+printf "\n\n\n[Test.sh] Query Domain Events...\n\n"
+sleep 1
+curl https://localhost:8000/events
+symfony server:stop -q
