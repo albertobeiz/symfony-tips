@@ -1,9 +1,10 @@
 <?php
 
 
-namespace App\Modules\Shared;
+namespace App\Modules\Shared\Infrastructure;
 
 
+use App\Modules\Shared\Domain\DomainEvent;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 class EventBus

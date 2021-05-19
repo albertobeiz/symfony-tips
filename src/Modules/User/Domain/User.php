@@ -2,7 +2,7 @@
 
 namespace App\Modules\User\Domain;
 
-use App\Modules\Shared\EventBus;
+use App\Modules\Shared\Infrastructure\EventBus;
 use App\Modules\User\Infrastructure\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use InvalidArgumentException;
@@ -10,7 +10,6 @@ use Symfony\Component\Uid\Uuid;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ORM\Table(name="`user`")
  */
 class User
 {

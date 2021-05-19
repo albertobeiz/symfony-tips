@@ -1,9 +1,10 @@
 <?php
 
 
-namespace App\Modules\Shared;
+namespace App\Modules\Shared\Application;
 
 
+use App\Modules\Shared\Domain\DomainEvent;
 use Symfony\Component\Messenger\Handler\MessageSubscriberInterface;
 
 class OnDomainEvent_PrintAsync implements MessageSubscriberInterface

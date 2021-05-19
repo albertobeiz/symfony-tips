@@ -4,13 +4,12 @@
 namespace App\Tests\Modules\User;
 
 
-use App\Modules\Shared\EventBus;
+use App\Modules\Shared\Infrastructure\EventBus;
 use App\Modules\User\Application\Post_SignUpUser;
 use App\Modules\User\Domain\User;
 use App\Modules\User\Domain\UserCreated;
 use App\Modules\User\Infrastructure\UserRepository;
 use App\Services\AnalyticsService;
-use App\Services\EmailService;
 use App\Tests\Modules\Shared\InMemoryMessageBus;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;

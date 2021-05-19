@@ -5,4 +5,4 @@ framework:
             sync: 'sync://'
 
         routing:
-            'App\Modules\Shared\DomainEvent': [sync, async]
+            'App\Modules\Shared\Domain\DomainEvent': [sync, async]

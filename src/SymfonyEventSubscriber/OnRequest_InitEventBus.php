@@ -4,7 +4,7 @@
 namespace App\SymfonyEventSubscriber;
 
 
-use App\Modules\Shared\EventBus;
+use App\Modules\Shared\Infrastructure\EventBus;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
