@@ -23,7 +23,6 @@ class Post_SignUpUser_Test extends TestCase
     private Post_SignUpUser $useCase;
     private MessageBusInterface $messageBus;
     private UserRepository $userRepository;
-    private EmailService $emailService;
     private AnalyticsService $analyticsService;
 
     /**
@@ -35,12 +34,10 @@ class Post_SignUpUser_Test extends TestCase
         EventBus::setEventBus($this->messageBus);
 
         $this->userRepository = $this->createMock(UserRepository::class);
-        $this->emailService = $this->createMock(EmailService::class);
         $this->analyticsService = $this->createMock(AnalyticsService::class);
 
         $this->useCase = new Post_SignUpUser(
             $this->userRepository,
-            $this->emailService,
             $this->analyticsService
         );
     }
@@ -68,7 +65,6 @@ class Post_SignUpUser_Test extends TestCase
 
     public function testGivenCorrectDataThenSaveUser()
     {
-        $this->emailService->expects($this->once())->method('onUserCreated');
         $this->analyticsService->expects($this->once())->method('onUserCreated');
 
         $expectedUser = new User(
