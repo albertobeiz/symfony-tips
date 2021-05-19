@@ -9,7 +9,6 @@ use App\Modules\User\Application\Post_SignUpUser;
 use App\Modules\User\Domain\User;
 use App\Modules\User\Domain\UserCreated;
 use App\Modules\User\Infrastructure\UserRepository;
-use App\Services\AnalyticsService;
 use App\Tests\Modules\Shared\InMemoryMessageBus;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +21,6 @@ class Post_SignUpUser_Test extends TestCase
     private Post_SignUpUser $useCase;
     private MessageBusInterface $messageBus;
     private UserRepository $userRepository;
-    private AnalyticsService $analyticsService;
 
     /**
      * @before
@@ -33,11 +31,9 @@ class Post_SignUpUser_Test extends TestCase
         EventBus::setEventBus($this->messageBus);
 
         $this->userRepository = $this->createMock(UserRepository::class);
-        $this->analyticsService = $this->createMock(AnalyticsService::class);
 
         $this->useCase = new Post_SignUpUser(
-            $this->userRepository,
-            $this->analyticsService
+            $this->userRepository
         );
     }
 
@@ -64,8 +60,6 @@ class Post_SignUpUser_Test extends TestCase
 
     public function testGivenCorrectDataThenSaveUser()
     {
-        $this->analyticsService->expects($this->once())->method('onUserCreated');
-
         $expectedUser = new User(
             Uuid::fromString('d9e7a184-5d5b-11ea-a62a-3499710062d0'),
             'username',
@@ -85,7 +79,11 @@ class Post_SignUpUser_Test extends TestCase
         $this->assertEquals($expectedUser, $returnedUser);
 
         $this->assertEquals(
-            new UserCreated(Uuid::fromString('d9e7a184-5d5b-11ea-a62a-3499710062d0'), 'username', 'username@tips.com'),
-            $this->messageBus->getDispatched()[0]);
+            (new UserCreated(
+                Uuid::fromString('d9e7a184-5d5b-11ea-a62a-3499710062d0'),
+                'username',
+                'username@tips.com'
+            ))->toArray(),
+            $this->messageBus->getDispatched()[0]->toArray());
     }
 }

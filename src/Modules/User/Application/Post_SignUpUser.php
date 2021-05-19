@@ -6,7 +6,6 @@ namespace App\Modules\User\Application;
 
 use App\Modules\User\Domain\User;
 use App\Modules\User\Infrastructure\UserRepository;
-use App\Services\AnalyticsService;
 use InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,8 +14,7 @@ use Symfony\Component\Uid\Uuid;
 class Post_SignUpUser
 {
     public function __construct(
-        private UserRepository $userRepository,
-        private AnalyticsService $analyticsService,
+        private UserRepository $userRepository
     )
     {
     }
@@ -34,8 +32,6 @@ class Post_SignUpUser
             $request->get('email')
         );
         $this->userRepository->persist($user);
-
-        $this->analyticsService->onUserCreated();
 
         return $user;
     }
