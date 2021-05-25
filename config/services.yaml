@@ -35,6 +35,10 @@ services:
             tags:
                 - { name: messenger.message_handler, bus: command.bus }
 
+        App\Modules\Shared\Infrastructure\QueryHandler:
+            tags:
+                - { name: messenger.message_handler, bus: query.bus }
+
         App\Modules\Shared\Infrastructure\EventHandler:
             tags:
                 - { name: messenger.message_subscriber, bus: event.bus }
