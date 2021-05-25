@@ -1,15 +1,15 @@
 <?php
 
 
-namespace App\Modules\DM;
+namespace App\Apps\API\Feed;
 
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class Get_DMsByUser
+class Get_UserFeed
 {
-    #[Route('/dm', name: 'user_dms', methods: ['GET'])]
+    #[Route('/feed/{username}', name: 'user_feed', methods: ['GET'])]
     public function __invoke(): JsonResponse
     {
         return new JsonResponse([]);

@@ -1,15 +1,15 @@
 <?php
 
 
-namespace App\Modules\DM;
+namespace App\Apps\API\Follow;
 
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class Post_DmUser
+class Post_FollowUser
 {
-    #[Route('/dm', name: 'user_dms', methods: ['GET'])]
+    #[Route('/follow', name: 'follow_user', methods: ['POST'])]
     public function __invoke(): JsonResponse
     {
         return new JsonResponse([]);

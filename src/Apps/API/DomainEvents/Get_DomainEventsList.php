@@ -1,11 +1,10 @@
 <?php
 
 
-namespace App\Modules\Shared\Application;
+namespace App\Apps\API\DomainEvents;
 
 
 use App\Modules\Shared\Infrastructure\EventStore;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 class Get_DomainEventsList

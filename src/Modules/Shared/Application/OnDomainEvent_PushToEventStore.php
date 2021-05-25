@@ -5,10 +5,10 @@ namespace App\Modules\Shared\Application;
 
 
 use App\Modules\Shared\Domain\DomainEvent;
+use App\Modules\Shared\Infrastructure\EventHandler;
 use App\Modules\Shared\Infrastructure\EventStore;
-use Symfony\Component\Messenger\Handler\MessageSubscriberInterface;
 
-class OnDomainEvent_PushToEventStore implements MessageSubscriberInterface
+class OnDomainEvent_PushToEventStore implements EventHandler
 {
     public function __construct(
         private EventStore $eventStore

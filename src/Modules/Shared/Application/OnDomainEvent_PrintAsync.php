@@ -5,9 +5,9 @@ namespace App\Modules\Shared\Application;
 
 
 use App\Modules\Shared\Domain\DomainEvent;
-use Symfony\Component\Messenger\Handler\MessageSubscriberInterface;
+use App\Modules\Shared\Infrastructure\EventHandler;
 
-class OnDomainEvent_PrintAsync implements MessageSubscriberInterface
+class OnDomainEvent_PrintAsync implements EventHandler
 {
     public function __invoke(DomainEvent $domainEvent)
     {

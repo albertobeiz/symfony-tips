@@ -23,9 +23,18 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Modules\:
-        resource: '../src/Modules/**/Application'
+    App\Apps\:
+        resource: '../src/Apps/*'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    _instanceof:
+        App\Modules\Shared\Infrastructure\CommandHandler:
+            tags:
+                - { name: messenger.message_handler, bus: command.bus }
+
+        App\Modules\Shared\Infrastructure\EventHandler:
+            tags:
+                - { name: messenger.message_subscriber, bus: event.bus }

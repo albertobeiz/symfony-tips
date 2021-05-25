@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Modules\Mailing\Application;
+namespace App\Apps\API\Mailing;
 
 
+use App\Modules\Shared\Infrastructure\EventHandler;
 use App\Modules\User\Domain\UserCreated;
 use App\Services\EmailService;
-use Symfony\Component\Messenger\Handler\MessageSubscriberInterface;
 
-class OnUserCreated_SendWelcomeEmail implements MessageSubscriberInterface
+class OnUserCreated_SendWelcomeEmail implements EventHandler
 {
     public function __construct(
         private EmailService $emailService

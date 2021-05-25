@@ -1,5 +1,5 @@
 controllers:
-    resource: ../../src/Modules/
+    resource: ../../src/Apps/
     type: annotation
 
 kernel:
