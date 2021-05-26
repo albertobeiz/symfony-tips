@@ -6,14 +6,16 @@ namespace App\Modules\User\Application;
 
 use App\Modules\Shared\Infrastructure\CommandHandler;
 use App\Modules\User\Domain\User;
-use App\Modules\User\Domain\UserCreated;
 use App\Modules\User\Infrastructure\UserRepository;
 use InvalidArgumentException;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 class CreateUserCommandHandler implements CommandHandler
 {
     public function __construct(
-        private UserRepository $userRepository)
+        private UserRepository $userRepository,
+        private MessageBusInterface $eventBus
+    )
     {
     }
 
@@ -29,5 +31,9 @@ class CreateUserCommandHandler implements CommandHandler
             $command->email
         );
         $this->userRepository->persist($user);
+
+        foreach ($user->getDomainEvents() as $event) {
+            $this->eventBus->dispatch($event);
+        }
     }
 }

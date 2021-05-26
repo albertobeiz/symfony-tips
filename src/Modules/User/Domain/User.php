@@ -2,6 +2,7 @@
 
 namespace App\Modules\User\Domain;
 
+use App\Modules\Shared\Domain\AggregateRoot;
 use App\Modules\Shared\Infrastructure\EventBus;
 use App\Modules\User\Infrastructure\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +12,7 @@ use Symfony\Component\Uid\Uuid;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User extends AggregateRoot
 {
     /**
      * @ORM\Id
@@ -39,7 +40,7 @@ class User
         $this->setUsername($username);
         $this->setEmail($email);
 
-        EventBus::dispatch(new UserCreated($uuid, $username, $email));
+        $this->record(new UserCreated($uuid, $username, $email));
     }
 
     public function getUuid(): ?Uuid
