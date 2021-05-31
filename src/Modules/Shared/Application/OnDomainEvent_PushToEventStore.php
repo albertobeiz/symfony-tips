@@ -18,7 +18,6 @@ class OnDomainEvent_PushToEventStore implements EventHandler
 
     public function __invoke(DomainEvent $domainEvent)
     {
-        echo '[Event Store] Pushing event ' . $domainEvent->getType() . "\n";
         $this->eventStore->push($domainEvent);
     }
 

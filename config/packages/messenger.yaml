@@ -12,14 +12,6 @@ framework:
             query.bus:
 
             command.bus:
-                middleware:
-                    - doctrine_ping_connection
-                    - doctrine_close_connection
-                    - doctrine_transaction
 
             event.bus:
                 default_middleware: allow_no_handlers
-                middleware:
-                    - doctrine_ping_connection
-                    - doctrine_close_connection
-                    - doctrine_transaction

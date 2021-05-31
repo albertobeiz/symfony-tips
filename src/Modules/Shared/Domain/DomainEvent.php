@@ -4,6 +4,8 @@
 namespace App\Modules\Shared\Domain;
 
 use App\Modules\User\Domain\UserCreated;
+use App\Modules\Tweet\Domain\TweetCreated;
+use App\Modules\Follow\Domain\UserFollowed;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
@@ -15,11 +17,16 @@ use Symfony\Component\Uid\Uuid;
  * @ORM\Entity()
  * @InheritanceType("SINGLE_TABLE")
  * @DiscriminatorColumn(name="classType", type="string")
- * @DiscriminatorMap({ "UserCreated" = UserCreated::class })
+ * @DiscriminatorMap({
+ *     "UserCreated" = UserCreated::class,
+ *     "TweetCreated" = TweetCreated::class,
+ *     "UserFollowed" = UserFollowed::class
+ * })
  */
 abstract class DomainEvent
 {
     abstract function getType(): string;
+
     abstract function toArray(): array;
 
     /**

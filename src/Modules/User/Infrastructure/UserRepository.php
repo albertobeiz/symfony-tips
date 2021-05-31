@@ -5,6 +5,7 @@ namespace App\Modules\User\Infrastructure;
 use App\Modules\User\Domain\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Uid\Uuid;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
