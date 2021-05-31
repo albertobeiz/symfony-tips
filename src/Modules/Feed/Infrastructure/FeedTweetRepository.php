@@ -24,6 +24,7 @@ class FeedTweetRepository extends ServiceEntityRepository
     {
         $file = 'feeds/' . $feedTweet->getFeedOwner()->getUuid() . '.csv';
         $actual = file_exists($file) ?  file_get_contents($file) . "\n" : '';
+        $actual .= $feedTweet->getUser()->getUuid() . ";";
         $actual .= $feedTweet->getUser()->getUsername() . ";";
         $actual .= $feedTweet->getText();
         file_put_contents($file, $actual);

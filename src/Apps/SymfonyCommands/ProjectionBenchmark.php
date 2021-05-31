@@ -31,13 +31,13 @@ class ProjectionBenchmark extends Command
         private EntityManagerInterface $entityManager
     )
     {
-        ini_set("memory_limit","4096M");
+        ini_set("memory_limit", "4096M");
         parent::__construct($name);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $steps = [10, 20];
+        $steps = [10, 25, 50, 100, 150, 200];
 
         $joinTimes = [];
         $projectionTimes = [];
@@ -107,11 +107,12 @@ class ProjectionBenchmark extends Command
             $progressBar->start();
 
             foreach ($uuids as $i => $uuid) {
+                $shortUuid = explode('-', $uuid)[0];
                 for ($t = 0; $t < $stepCount; $t++) {
                     $this->commandBus->dispatch(new CreateTweetCommand(
                         Uuid::v4(),
                         $uuid,
-                        "Tweet"
+                        "User $shortUuid - Tweet $i"
                     ));
 
                     $progressBar->advance();
