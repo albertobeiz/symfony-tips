@@ -37,7 +37,7 @@ class ProjectionBenchmark extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $steps = [10, 20, 50, 100, 150, 200];
+        $steps = [10, 20];
 
         $joinTimes = [];
         $projectionTimes = [];
