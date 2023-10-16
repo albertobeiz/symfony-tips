@@ -66,4 +66,4 @@ Now we know it's not too big, 7 use cases, and that it's a Tweeter like app. All
 
 > Symfony tip completed 👍! Check the [final code](https://github.com/albertobeiz/symfony-tips/tree/01) and leave a ⭐️!
 
-Next Tip -> [Symfony Tips #02 - Use folders to group your Use Cases](https://blog.albertobeiz.com/symfony-tips-02-use-folders-to-group-your-use-cases)
+Next Tip -> [Symfony Tips #02 - Use folders to group your Use Cases](https://github.com/albertobeiz/symfony-tips/tree/01)
