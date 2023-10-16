@@ -87,8 +87,8 @@ To remove more non business code and to centralice all serialization logic. All 
 
 You can re-run **test.sh** to see that everything keeps working.
 
-> Symfony tip completed! Check the [final code](https://web.archive.org/web/20211024192500/https://github.com/albertobeiz/symfony-tips/tree/07)!
+> Symfony tip completed! Check the [final code](https://github.com/albertobeiz/symfony-tips/tree/07)!
 
-Next Tip -> [Symfony Tips #08 - Flush in an Event Subscriber](https://web.archive.org/web/20211024192500/https://github.com/albertobeiz/symfony-tips/tree/08)
+Next Tip -> [Symfony Tips #08 - Flush in an Event Subscriber](https://github.com/albertobeiz/symfony-tips/tree/08)
 
-Previous Tip -> [Symfony Tips #06 - Decode input in an Event Subscriber](https://web.archive.org/web/20211024192500/https://github.com/albertobeiz/symfony-tips/tree/09)
+Previous Tip -> [Symfony Tips #06 - Decode input in an Event Subscriber](https://github.com/albertobeiz/symfony-tips/tree/09)
