@@ -67,6 +67,6 @@ You can re-run **test.sh** to see that everything keeps working.
 
 > Symfony tip completed! Check the [final code](https://github.com/albertobeiz/symfony-tips/tree/04)!
 
-Next Tip -> [Symfony Tips #05 - One line per service](github.com/albertobeiz/symfony-tips/tree/05)
+Next Tip -> [Symfony Tips #05 - One line per service](https://github.com/albertobeiz/symfony-tips/tree/05)
 
-Previous Tip -> [Symfony Tips #03 - Move internal dependencies to the constructor](github.com/albertobeiz/symfony-tips/tree/03)
+Previous Tip -> [Symfony Tips #03 - Move internal dependencies to the constructor](https://github.com/albertobeiz/symfony-tips/tree/03)
