@@ -171,4 +171,4 @@ Run **php bin/console tips:projection-benchmark** if you want to try the benchma
 
 > Symfony tip completed 👍! Check the [final code](https://github.com/albertobeiz/symfony-tips/tree/22) and leave a ⭐️!
 
-Previous Tip -> [Symfony Tips #21 - CQRS - Event Bus]([https://github.com/albertobeiz/symfony-tips/tree/21](https://github.com/albertobeiz/symfony-tips/tree/21))
+Previous Tip -> [Symfony Tips #21 - CQRS - Event Bus](https://github.com/albertobeiz/symfony-tips/tree/21)
