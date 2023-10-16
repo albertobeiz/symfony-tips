@@ -118,6 +118,6 @@ This division will help us in the future when we divide our app using events and
 
 > Symfony tip completed! Check the [final code](https://github.com/albertobeiz/symfony-tips/tree/03)!
 
-Next Tip -> [Symfony Tips #04 - Use Repositories](github.com/albertobeiz/symfony-tips/tree/04)
+Next Tip -> [Symfony Tips #04 - Use Repositories](https://github.com/albertobeiz/symfony-tips/tree/04)
 
-Previous Tip -> [Symfony Tips #02 - Use folders to group your Use Cases](github.com/albertobeiz/symfony-tips/tree/02)
+Previous Tip -> [Symfony Tips #02 - Use folders to group your Use Cases](https://github.com/albertobeiz/symfony-tips/tree/02)
