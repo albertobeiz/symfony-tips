@@ -1,3 +1,5 @@
+## Symfony Tips #22 - CQRS - Projections
+
 ⚗️ Let's make an experiment!
 
 We have 10 users, each of them follows the other 9 users, and creates 10 tweets. And then we'll query a user's feed.
