@@ -1,4 +1,4 @@
-# Symfony Tips #21 - CQRS - Event Bus
+## Symfony Tips #21 - CQRS - Event Bus
 
 Having a static EventBus is a very convenient and easy way of dispatching events but we are mixing different application layers and maybe having a global object that you can access anywhere in your code is not the best idea.
 
